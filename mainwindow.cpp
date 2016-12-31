@@ -141,6 +141,7 @@ void MainWindow::on_startButton_toggled(bool checked)
 
 		ui->nraIP->setEnabled(false);
 		ui->nraPort->setEnabled(false);
+		ui->nraStreamPort->setEnabled(false);
 		ui->rtlListenIP->setEnabled(false);
 		ui->rtlListenPort->setEnabled(false);
 		ui->startButton->setText(tr("Stop"));
@@ -217,6 +218,7 @@ void MainWindow::resetGUI()
 {
 	ui->nraIP->setEnabled(true);
 	ui->nraPort->setEnabled(true);
+	ui->nraStreamPort->setEnabled(true);
 	ui->rtlListenIP->setEnabled(true);
 	ui->rtlListenPort->setEnabled(true);
 	ui->nraDevInfo->clear();
