@@ -72,7 +72,7 @@ public:
 	static void registerTypes();
 
 public slots:
-	void start(const QHostAddress& nraAddress, quint16 nraPort, const QHostAddress& rtlListenAddress, quint16 rtlListenPort);
+	void start(const QHostAddress& nraAddress, quint16 nraPort, quint16 nraStreamPort, const QHostAddress& rtlListenAddress, quint16 rtlListenPort);
 	void stop();
 	void setFCenter(quint32 fcent);
 	void setReferenceLevel(float rl);

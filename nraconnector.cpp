@@ -59,7 +59,7 @@ void NRAConnector::registerTypes()
 	qRegisterMetaType<ReferenceLevelList>("ReferenceLevelList");
 }
 
-void NRAConnector::start(const QHostAddress& nraAddress, quint16 nraPort, const QHostAddress& rtlListenAddress, quint16 rtlListenPort)
+void NRAConnector::start(const QHostAddress& nraAddress, quint16 nraPort, quint16 nraStreamPort, const QHostAddress& rtlListenAddress, quint16 rtlListenPort)
 {
 	m_rtlServer.close();
 	m_nraConnection.abort();
@@ -68,10 +68,7 @@ void NRAConnector::start(const QHostAddress& nraAddress, quint16 nraPort, const 
 
 	m_nraAddress = nraAddress;
 	m_nraPort = nraPort;
-
-	m_nraStreamPort = m_nraPort + 1;
-	if(m_nraStreamPort < 1)
-		m_nraStreamPort = m_nraPort - 1;
+	m_nraStreamPort = nraStreamPort;
 
 	if(!m_rtlServer.open(rtlListenAddress, rtlListenPort)) {
 		emit onStateReport(CSError, tr("Could not listen on TCP %1:%2: %3").

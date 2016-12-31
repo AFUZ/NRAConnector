@@ -72,6 +72,7 @@ void MainWindow::on_startButton_toggled(bool checked)
 		// start
 		QHostAddress nraAddress;
 		int nraPort;
+		int nraStreamPort;
 		QHostAddress rtlTcpAddress;
 		int rtlTcpPort;
 
@@ -86,7 +87,7 @@ void MainWindow::on_startButton_toggled(bool checked)
 
 		nraPort = ui->nraPort->text().toInt(&ok);
 		if(!ok) {
-			QMessageBox::critical(this, tr("Configuration Error"), tr("NRA port number \"%1\" is invalid.").arg(ui->nraIP->text()));
+			QMessageBox::critical(this, tr("Configuration Error"), tr("NRA port number \"%1\" is invalid.").arg(ui->nraPort->text()));
 			ui->startButton->setChecked(false);
 			return;
 		}
@@ -96,6 +97,24 @@ void MainWindow::on_startButton_toggled(bool checked)
 			return;
 		}
 		ui->nraPort->setText(tr("%1").arg(nraPort));
+
+		nraStreamPort = ui->nraStreamPort->text().toInt(&ok);
+		if(!ok) {
+			QMessageBox::critical(this, tr("Configuration Error"), tr("NRA stream port number \"%1\" is invalid.").arg(ui->nraStreamPort->text()));
+			ui->startButton->setChecked(false);
+			return;
+		}
+		if((nraStreamPort < 1) || (nraStreamPort > 65535)) {
+			QMessageBox::critical(this, tr("Configuration Error"), tr("NRA stream port number \"%1\" is out of range.").arg(nraPort));
+			ui->startButton->setChecked(false);
+			return;
+		}
+		if(nraStreamPort == nraPort) {
+			QMessageBox::critical(this, tr("Configuration Error"), tr("NRA control and stream port must be different"));
+			ui->startButton->setChecked(false);
+			return;
+		}
+		ui->nraStreamPort->setText(tr("%1").arg(nraStreamPort));
 
 		if(!rtlTcpAddress.setAddress(ui->rtlListenIP->text())) {
 			QMessageBox::critical(this, tr("Configuration Error"), tr("RTL-TCP listen IP \"%1\" is invalid.").arg(ui->rtlListenIP->text()));
@@ -118,7 +137,7 @@ void MainWindow::on_startButton_toggled(bool checked)
 		ui->rtlListenPort->setText(tr("%1").arg(rtlTcpPort));
 
 		saveSettings();
-		m_nraConnector->start(nraAddress, nraPort, rtlTcpAddress, rtlTcpPort);
+		m_nraConnector->start(nraAddress, nraPort, nraStreamPort, rtlTcpAddress, rtlTcpPort);
 
 		ui->nraIP->setEnabled(false);
 		ui->nraPort->setEnabled(false);
@@ -214,6 +233,7 @@ void MainWindow::loadSettings()
 
 	ui->nraIP->setText(settings.value("nraip", "192.168.128.128").toString());
 	ui->nraPort->setText(settings.value("nraport", "55555").toString());
+	ui->nraStreamPort->setText(settings.value("nrastreamport", "55556").toString());
 	ui->rtlListenIP->setText(settings.value("rtllistenip", "0.0.0.0").toString());
 	ui->rtlListenPort->setText(settings.value("rtllistenport", "1234").toString());
 }
@@ -224,6 +244,7 @@ void MainWindow::saveSettings()
 
 	settings.setValue("nraip", ui->nraIP->text());
 	settings.setValue("nraport", ui->nraPort->text());
+	settings.setValue("nrastreamport", ui->nraStreamPort->text());
 	settings.setValue("rtllistenip", ui->rtlListenIP->text());
 	settings.setValue("rtllistenport", ui->rtlListenPort->text());
 }

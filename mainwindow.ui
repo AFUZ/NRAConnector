@@ -6,39 +6,70 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>687</width>
-    <height>407</height>
+    <width>533</width>
+    <height>335</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>afuz.org RTL-TCP Connector for Narda NRA</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout" rowstretch="0,0">
+  <layout class="QGridLayout" name="gridLayout" rowstretch="0,1">
    <item row="0" column="0">
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
       <string>Narda NRA Address</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0">
-       <widget class="QLabel" name="label">
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_10">
         <property name="text">
-         <string>IP</string>
+         <string>Stream Port</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="nraStreamPort">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>0</height>
+         </size>
         </property>
        </widget>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>Port</string>
+         <string>Control Port</string>
         </property>
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QLineEdit" name="nraPort"/>
+       <widget class="QLineEdit" name="nraPort">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>0</height>
+         </size>
+        </property>
+       </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QLineEdit" name="nraIP"/>
+       <widget class="QLineEdit" name="nraIP">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>0</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>IP</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -49,16 +80,6 @@
       <string>RTL-TCP Interface</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>Port</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLineEdit" name="rtlListenPort"/>
-      </item>
       <item row="0" column="0">
        <widget class="QLabel" name="label_4">
         <property name="text">
@@ -67,7 +88,44 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QLineEdit" name="rtlListenIP"/>
+       <widget class="QLineEdit" name="rtlListenIP">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>0</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Port</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="rtlListenPort">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>0</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" colspan="2">
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>5</width>
+          <height>0</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </widget>
@@ -121,8 +179,8 @@
         </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>20</width>
-          <height>40</height>
+          <width>5</width>
+          <height>0</height>
          </size>
         </property>
        </spacer>
@@ -192,6 +250,7 @@
   <tabstop>startButton</tabstop>
   <tabstop>nraIP</tabstop>
   <tabstop>nraPort</tabstop>
+  <tabstop>nraStreamPort</tabstop>
   <tabstop>rtlListenIP</tabstop>
   <tabstop>rtlListenPort</tabstop>
   <tabstop>nraRefLvl</tabstop>
